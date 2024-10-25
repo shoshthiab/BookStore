@@ -1,0 +1,46 @@
+﻿@model BookStore.Models.ViewModels.DeleteRoleViewModel
+
+@{
+    ViewData["Title"] = "DeleteRole";
+}
+
+
+
+<head>
+    <link rel="stylesheet" href="~/css/AdminStyle.css" />
+
+
+</head>
+
+
+<body>
+
+    <div class="container">
+        <!-- Left Sidebar -->
+        @Html.Partial("LeftSidebar")
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h4>Delete Role</h4>
+            <br />
+            <div>
+                <h5 style="color:red">Are you sure you want to delete the role "@Model.RoleName"?</h5>
+                <form asp-action="DeleteRole" method="post">
+                    <input type="hidden" asp-for="RoleID" />
+                    <input type="submit" value="Yes" class="btn btn-create-role" onclick="return confirmDelete();" />
+                    <a asp-action="RolesList" class="btn btn-create-role">No</a>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this role?");
+    }
+</script>

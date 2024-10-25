@@ -1,0 +1,80 @@
+﻿
+html, body {
+    background-color: #5c5470 !important;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+.container {
+    font-family: 'Courier New';
+    display: flex;
+    margin-top: 60px;
+    margin-left: 15px;
+    margin-right: 10px;
+    margin-bottom: 0px;
+    padding: 0px 0 0 0;
+    max-width: 1400px;
+}
+
+.sidebar {
+    width: 12%; 
+    background: #dbd8e3;
+    margin-right:5px;
+    border-radius:5px;
+}
+
+    .sidebar h4 {
+        text-align: center;
+        padding: 2px;
+        padding-bottom: 7px;
+        padding-top: 7px;
+        border-bottom: 1px solid #3f3162;
+    }
+    .sidebar table {
+        width: 100%; 
+        border-collapse: collapse; 
+    }
+
+    .sidebar td {
+        padding: 10px;
+        vertical-align: middle;
+        border-bottom: 1px solid #352f44;
+    }
+        .tr:hover {
+            color: #fff;
+            background: #352f44;
+        }
+
+
+.content {
+    border-radius: 7px;
+    width: 88%; /* 3/4 of the page */
+    padding: 15px;
+    background: #dbd8e3; /* third color */
+
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        order: 1; 
+    }
+
+    .content {
+        order: 2;
+    }
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem #5c5470, 0 0 0 0.25rem #5c5470 !important;
+    outline: none !important; /* لإزالة الإطار الأزرق الافتراضي */
+}

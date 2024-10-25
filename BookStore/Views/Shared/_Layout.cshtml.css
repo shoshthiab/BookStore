@@ -1,0 +1,167 @@
+﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+ /* width: 100%;
+  white-space: nowrap;
+  line-height: 60px;*/
+}
+
+/*here is the navbar styling------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Times New Roman', Times, serif;
+}
+
+body {
+    background-color: #f0efeb;
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    background-color: #f0efeb;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid #000;
+}
+
+/* Right section for Login and Register */
+.auth {
+    display: flex;
+    align-items: center;
+    padding-right: 60px;
+}
+.auth a {
+        display: flex;
+        align-items: center;
+        margin-left: 2px;
+        text-decoration: none;
+        color: #000;
+        font-size: 16px;
+}
+.auth img {
+        margin-left: 5px;
+
+
+}
+.auth .divider {
+        margin-left: 10px;
+        margin-right:10px;
+        font-size: 14px;
+        color: #000;
+        line-height: 15;
+        padding: 0;
+        font-weight: bold;
+    }
+
+
+
+   
+/* Left section for Social Media Icons */
+
+
+    
+.social-icons {
+    padding-left: 60px; 
+    display: flex; 
+    align-items: center; 
+}
+.social-icons a {
+        margin-right: 10px; 
+}
+.social-icons a:last-child {
+            margin-right: 0; 
+}
+.social-icons img {
+        width: 5px; 
+        height: 5px;
+        object-fit: contain;
+    }
+/*footinggg About section------------------------------------------*/
+
+#about {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f0efeb;
+}
+
+.about-section {
+    display: flex;
+    width: 90%;
+}
+
+.left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* For vertical stacking */
+    margin-right: 70px; /* Space between left and right sections */
+}
+
+.top-part {
+    font-size:50px/* Space between top and bottom parts */
+}
+.logo-title {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    margin-left: 10px;
+}
+.bottom-part{
+    margin-left:20px;
+}
+
+.right-section {
+    flex: 1;
+    margin-top:40px;
+    padding-left:10px
+}
+
+.title {
+    font-size: 80px;
+    font-weight: bold;
+}
+.contact{
+   padding-left:20px;
+}

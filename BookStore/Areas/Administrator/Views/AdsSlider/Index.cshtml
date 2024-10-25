@@ -1,0 +1,34 @@
+﻿@model IEnumerable<BookStore.Models.AdsSlider>
+
+@{
+    ViewData["Title"] = "Ads";
+}
+
+<h1>Ads</h1>
+
+<p>
+    <a asp-action="Create" class="btn myBtn">New Ad?</a>
+</p>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card" style="background-color: #dbd8e3; border-color:#5c5470; min-height:450px; max-height:600px;">
+                <div class="card-body text-center d-flex flex-column">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.AdTitle)</h5>
+                    <img src="@item.AdImagePath" alt="Ad Image" class="img-fluid mb-3" style="max-height: 100px; object-fit: cover;" />
+                    <p class="card-text">Type: @Html.DisplayFor(modelItem => item.AdType)</p>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.AdDescription)</p>
+                    <p class="card-text">Is Active? @Html.DisplayFor(modelItem => item.IsActive) || Is Deleted? @Html.DisplayFor(modelItem => item.IsDeleted)</p>
+                    <p class="card-text">Creation Date: @Html.DisplayFor(modelItem => item.CreationDate)</p>
+                    <div class="mt-auto">
+                    <a asp-action="Edit" asp-route-id="@item.AdId" class="btn Anotherbtn">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.AdId" class="btn Anotherbtn">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.AdId" class="btn Anotherbtn">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

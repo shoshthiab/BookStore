@@ -1,0 +1,55 @@
+﻿body {
+    background-color: #eeebe6;
+    width:100%
+}
+
+h1 {
+    font-family: Algerian;
+    text-align: center;
+
+}
+.form-control {
+    color: black;
+}
+
+.btn {
+    text-align: center;
+    background-color: #d0cdc7;
+    font-family: Algerian;
+}
+
+.d-flex {
+    background-color: #eeebe6;
+}
+.form-control:focus {
+    outline: none; 
+    border: 1px solid black; 
+    box-shadow: none; 
+}
+.btn:hover {
+    background-color: black;
+    color: #d0cdc7;
+}
+.button-container {
+    text-align: center;
+}
+
+
+.form-check-input {
+    width: 20px; /* عرض الـ checkbox */
+    height: 20px; /* ارتفاع الـ checkbox */
+    accent-color: black; /* تغيير لون الـ checkbox عند التحديد */
+    border: 2px solid black; /* إضافة حواف سوداء */
+    outline: none; /* إزالة الخط الخارجي */
+    cursor: pointer; /* تغيير شكل المؤشر عند التمرير على الـ checkbox */
+    appearance: none; /* إزالة التنسيق الافتراضي للـ checkbox */
+    background-color: white; /* لون الخلفية الافتراضي */
+}
+.form-check-input:checked {
+        background-color: black; 
+        border-color: black; 
+    }
+.form-check-input:focus {
+        outline: none; 
+        border: 2px solid black; 
+    }

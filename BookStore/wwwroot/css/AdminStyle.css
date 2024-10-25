@@ -1,0 +1,122 @@
+﻿
+/* Sidebar Design */
+.sidebar {
+    width: auto;
+    background-color: #f0efeb;
+    border-radius: 10px;
+    margin-left: 100px;
+    margin-right: 40px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    border-bottom: 1px solid black;
+}
+
+    .sidebar li:last-child {
+        border-bottom: none;
+    }
+.container {
+    display: flex;
+    margin: 30px;
+}
+
+
+
+/* Main content area */
+
+.main-content {
+    flex-grow: 1;
+    padding-left: 20px;
+}
+
+.btn-create-role {
+    background-color: #f0efeb;
+    color: black;
+    border-top: none;
+    border-bottom: none;
+    border-right: 4px solid black;
+    border-left: 4px solid black;
+    border-radius: 15px;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+
+/* Table Design */
+
+.role-table {
+    width: 100%;
+    background-color: #fff;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border: none;
+}
+
+
+    .role-table th, .role-table td {
+        padding: 10px;
+        background-color: #f0efeb;
+        border-bottom: 1px solid black;
+        text-align: center;
+    }
+
+/* Shape for ID Column */
+.shape-square {
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+
+/* Icons for Operations */
+.icon-operation {
+    width: 20px;
+    height: 20px;
+    border: none;
+    padding: none
+}
+
+/*for input label */
+
+.form-control {
+    color: black;
+}
+
+.back{
+    width:15px;
+    height:15px;
+}
+
+.custom-input {
+    width:400px; 
+    margin-bottom: 5px; 
+    border: 1px solid black;
+    
+}
+.custom-input:focus {
+        border: 2px solid black; 
+        outline: none; 
+    }
+
+
+.readonly-input {
+    background-color: #ffffff; 
+}
+
+.readonly-input:focus {
+        background-color: #ffffff; 
+        border-color: red; 
+    }

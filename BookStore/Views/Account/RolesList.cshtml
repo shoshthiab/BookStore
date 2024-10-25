@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+@{
+    ViewData["Title"] = "RolesList";
+}
+<html>
+
+
+<head>
+     <link rel="stylesheet" href="~/css/AdminStyle.css" />
+</head>
+<body>
+    
+<div class="container">
+    <!-- Left Sidebar -->
+   
+     @Html.Partial("LeftSidebar")
+
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h4>RolesList</h4>
+        <br />
+        <!-- Create Role Button -->
+        <a  asp-action="CreateRole" asp-controller="Account" class="btn btn-create-role">New Role</a>
+        <br />
+
+        <!-- Main Table Design -->
+        <table class="role-table">
+            <tr>
+                <th>ID</th>
+                <th>Role Name</th>
+                <th>Operations</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                        <td  style="text-align: left;">
+                        <div class="shape-square"></div> <!-- You can also use shape-triangle here -->
+                        @item.Id
+                    </td>
+                    <td>@item.Name</td>
+                    <td>
+                        <!-- Operation Icons -->
+                       
+                      <a asp-action="EditRole" asp-controller="Account" asp-route-id="@item.Id" class="btn">
+                          <img src="~/img/editt.png" alt="Edit" class="icon-operation"/></a>
+                      <a asp-action="DeleteRole" asp-controller="Account" asp-route-id="@item.Id" class="btn">
+                         <img src="~/img/trash.png" alt="Delete" class="icon-operation" /></a>
+
+
+                                         
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+﻿@model BookStore.Models.ViewModels.EditRoleViewModel
+
+@{
+    ViewData["Title"] = "EditRole";
+}
+
+
+<head>
+    <link rel="stylesheet" href="~/css/AdminStyle.css" />
+</head>
+
+
+<body>
+
+    <div class="container">
+        <!-- Left Sidebar -->
+        @Html.Partial("LeftSidebar")
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h4>Edit Role</h4>
+            <br />
+
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="EditRole">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="RoleID" class="control-label"></label>
+                            <input asp-for="RoleID" class="form-control custom-input" readonly />
+                            <span asp-validation-for="RoleID" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="RoleName" class="control-label"></label>
+                            <input asp-for="RoleName" class="form-control custom-input" />
+                            <span asp-validation-for="RoleName" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-create-role" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+           
+         
+                <br />
+            
+
+            <div>
+                <a asp-action="RolesList" asp-controller="Account" class="btn btn-create-role">
+
+                    <img src="~/img/leftArrow.png" alt="Left Arrow" class="back" />
+                    Roles List
+                </a>
+            </div>
+
+            
+            
+        </div>
+    </div>
+
+</body>

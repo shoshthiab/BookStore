@@ -1,0 +1,88 @@
+﻿@model BookStore.Models.AdsSlider
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit Ad</h2>
+<hr style="margin:0;padding:0;" />
+<div class="row">
+    <div class="col-md-5">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="AdId" />
+            <div class="form-group">
+                <label asp-for="AdTitle" class="control-label"></label>
+                <input asp-for="AdTitle" class="form-control" />
+                <span asp-validation-for="AdTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdImagePath">Current Ad Image</label><br />
+                @if (!string.IsNullOrEmpty(Model.AdImagePath))
+                {
+                    <img src="@Model.AdImagePath" alt="Ad Image" style="max-width: 200px;" />
+                }
+            </div>
+            <div class="form-group">
+                <label for="imageFile">Upload New Ad Image</label>
+                <input type="file" name="imageFile" class="form-control" />
+            </div>
+
+
+
+            <div class="form-group">
+                <label asp-for="AdType" class="control-label"></label>
+                @Html.DropDownListFor(model => model.AdType,
+                         new SelectList(Enum.GetValues(typeof(AdsSlider.AdsType)).Cast<AdsSlider.AdsType>().Select(e => new { Id = e, Name = e.ToString() }), "Id", "Name", Model.AdType),
+                         "Select Ad Type",
+                         new { @class = "form-control" }) 
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="AdDescription" class="control-label"></label>
+                <textarea asp-for="AdDescription" class="form-control" maxlength="200" rows="6" id="adDescription"></textarea>
+                <small id="charCount">200 characters remaining</small>
+                <span asp-validation-for="AdDescription" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreationDate" class="control-label"></label>
+                <input asp-for="CreationDate" class="form-control" />
+                <span asp-validation-for="CreationDate" class="text-danger"></span>
+            </div>
+            
+            
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn Anotherbtn" style="margin-top:7px;margin-bottom:3px" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" style="text-decoration:underline;color:#2a2438">Back to Ads List</a>
+</div>
+
+
+<script>
+    var textarea = document.getElementById("adDescription");
+    var charCount = document.getElementById("charCount");
+    var maxLength = textarea.getAttribute("maxlength");
+
+    textarea.addEventListener("input", function () {
+        var remaining = maxLength - textarea.value.length;
+        charCount.textContent = remaining + " characters remaining";
+    });
+</script>
