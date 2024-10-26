@@ -89,24 +89,6 @@ namespace BookStore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Essays",
-                columns: table => new
-                {
-                    EssayId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    EssayTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EssayDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EssayAuthor = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EssayImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Essays", x => x.EssayId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Menus",
                 columns: table => new
                 {
@@ -241,9 +223,8 @@ namespace BookStore.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Currency = table.Column<int>(type: "int", nullable: false),
                     AvailableQuantity = table.Column<int>(type: "int", nullable: false),
-                    AuthorName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AuthorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BookImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AuthorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -255,7 +236,33 @@ namespace BookStore.Migrations
                         name: "FK_Books_Authors_AuthorId",
                         column: x => x.AuthorId,
                         principalTable: "Authors",
-                        principalColumn: "AuthorId");
+                        principalColumn: "AuthorId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Essays",
+                columns: table => new
+                {
+                    EssayId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EssayTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EssayDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EssayAuthor = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EssayImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AuthorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Essays", x => x.EssayId);
+                    table.ForeignKey(
+                        name: "FK_Essays_Authors_AuthorId",
+                        column: x => x.AuthorId,
+                        principalTable: "Authors",
+                        principalColumn: "AuthorId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -300,6 +307,11 @@ namespace BookStore.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Books_AuthorId",
                 table: "Books",
+                column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Essays_AuthorId",
+                table: "Essays",
                 column: "AuthorId");
         }
 

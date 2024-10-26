@@ -1,6 +1,14 @@
-﻿
+﻿@model dynamic
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Dashboard";
 }
 
-<h1>Index for All Admins</h1>
+<h1>Dashboard</h1>
+<div>
+    <ul>
+        <li>Number of Ads: @Model.AdsCount</li>
+        <li>Number of Books: @Model.BooksCount</li>
+        <li>Number of Authors: @Model.AuthorsCount</li>
+        <li>Number of Essays: @Model.EssaysCount</li>
+    </ul>
+</div>

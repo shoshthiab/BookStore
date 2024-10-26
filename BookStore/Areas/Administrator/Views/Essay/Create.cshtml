@@ -1,15 +1,13 @@
 ﻿@model BookStore.Models.Essay
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "New Essay";
 }
 
-<h1>Create</h1>
-
-<h4>Essay</h4>
-<hr />
+<h2>Create New Essay</h2>
+<hr style="margin:0;padding:0;" />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-10">
         <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
@@ -17,15 +15,30 @@
                 <input asp-for="EssayTitle" class="form-control" />
                 <span asp-validation-for="EssayTitle" class="text-danger"></span>
             </div>
-            <div class="form-group">
+         @*    <div class="form-group">
                 <label asp-for="EssayDescription" class="control-label"></label>
                 <input asp-for="EssayDescription" class="form-control" />
                 <span asp-validation-for="EssayDescription" class="text-danger"></span>
-            </div>
+            </div> *@
             <div class="form-group">
+                <label asp-for="EssayDescription" class="control-label"></label>
+                <textarea asp-for="EssayDescription" class="form-control" id="essayDescription" maxlength="1000" rows="10" oninput="updateCharCount()"></textarea>
+                <span asp-validation-for="EssayDescription" class="text-danger"></span>
+                <small id="charCount" class="form-text text-muted">1000 characters remaining</small>
+            </div>
+
+            @* <div class="form-group">
                 <label asp-for="EssayAuthor" class="control-label"></label>
                 <input asp-for="EssayAuthor" class="form-control" />
                 <span asp-validation-for="EssayAuthor" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="AuthorId" class="control-label">Author</label>
+                @Html.DropDownListFor(model => model.AuthorId,
+                         new SelectList(ViewBag.Authors, "AuthorId", "AuthorName"),
+                         "Select Author",
+                         new { @class = "form-control" })
+                <span asp-validation-for="AuthorId" class="text-danger"></span>
             </div>
             @* <div class="form-group">
                 <label asp-for="EssayImagePath" class="control-label"></label>
@@ -54,13 +67,23 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn" style="margin-top:10px;text-decoration:none;background-color:#5c5470;color:white" />
+
             </div>
+           
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" style="text-decoration:underline;color:#2a2438">Back to Essays List</a>
 </div>
 
+<script>
+    function updateCharCount() {
+        const maxChars = 1000;
+        const textarea = document.getElementById("essayDescription");
+        const remainingChars = maxChars - textarea.value.length;
+        document.getElementById("charCount").textContent = remainingChars + " characters remaining";
+    }
+</script>

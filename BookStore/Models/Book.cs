@@ -23,7 +23,7 @@ namespace BookStore.Models
 
         [Display(Name = "Available Quantity")]
         public int AvailableQuantity { get; set; }
-        [Display(Name = "Author Name")]
+   //     [Display(Name = "Author Name")]
 
         // public string AuthorName { get; set; }
         [ForeignKey("Author")]

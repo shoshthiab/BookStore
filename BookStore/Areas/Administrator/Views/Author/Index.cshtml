@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<BookStore.Models.Author>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Authors";
 }
 
 <h1>Authors</h1>
@@ -31,7 +31,7 @@
                             @foreach (var book in item.Books)
                             {
                                 <span class="book-item">
-                                    <a asp-action="Details" asp-controller="Books" asp-route-id="@book.BookId" style="color:white">@book.BookTitle</a>
+                                    <a asp-action="Details" asp-controller="Book" asp-route-id="@book.BookId" style="color:white">@book.BookTitle</a>
                                 </span>
                               
                                 @if (book != item.Books.Last())
@@ -42,6 +42,27 @@
                         }
                        
                     </div>
+
+                    <div class="text-center">
+                        @if (item.Essays != null && item.Essays.Any())
+                        {
+                            @foreach (var essay in item.Essays)
+                            {
+                                <span class="book-item">
+                                    <a asp-action="Details" asp-controller="Essay" asp-route-id="@essay.EssayId" style="color:white">@essay.EssayTitle</a>
+                                </span>
+
+                                @if (essay != item.Essays.Last())
+                                {
+                                    <span class="separator">, </span>
+                                }
+                            }
+                        }
+
+                    </div>
+
+
+
                 </div>
                 <div class="card-footer text-center">
                     <a asp-action="Edit" asp-route-id="@item.AuthorId" class="btn Anotherbtn">Edit</a>

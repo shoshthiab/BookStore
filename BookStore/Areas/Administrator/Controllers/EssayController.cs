@@ -27,7 +27,11 @@ namespace BookStore.Areas.Administrator.Controllers
         // GET: Administrator/Essay
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Essays.ToListAsync());
+            //var Essays = _context.Essays.Include(b => b.Author).ToList();
+            //return View(Essays);
+            var essays = await _context.Essays.Include(b => b.Author).ToListAsync();
+            return View(essays);
+            //   return View(await _context.Essays.ToListAsync());
         }
 
         // GET: Administrator/Essay/Details/5
@@ -44,13 +48,14 @@ namespace BookStore.Areas.Administrator.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.Authors = new SelectList(await _context.Authors.ToListAsync(), "AuthorId", "AuthorName", essay.AuthorId);
             return View(essay);
         }
 
         // GET: Administrator/Essay/Create
         public IActionResult Create()
         {
+            ViewBag.Authors = _context.Authors.ToList();
             return View();
         }
 
@@ -82,6 +87,7 @@ namespace BookStore.Areas.Administrator.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Authors = _context.Authors.ToList();
             return View(essay);
         }
 
@@ -93,11 +99,13 @@ namespace BookStore.Areas.Administrator.Controllers
                 return NotFound();
             }
 
-            var essay = await _context.Essays.FindAsync(id);
+           // var essay = await _context.Essays.FindAsync(id);
+            var essay = await _context.Essays.Include(b => b.Author).FirstOrDefaultAsync(b => b.EssayId == id);
             if (essay == null)
             {
                 return NotFound();
             }
+            ViewBag.Authors = new SelectList(await _context.Authors.ToListAsync(), "AuthorId", "AuthorName", essay.AuthorId);
             return View(essay);
         }
 
@@ -130,7 +138,7 @@ namespace BookStore.Areas.Administrator.Controllers
 
                         essay.EssayImagePath = "/images/" + uniqueFileName;
                     }
-
+                    essay.AuthorId = essay.AuthorId;
                     _context.Update(essay);
                     await _context.SaveChangesAsync();
                 }
@@ -147,6 +155,7 @@ namespace BookStore.Areas.Administrator.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Authors = new SelectList(await _context.Authors.ToListAsync(), "AuthorId", "AuthorName", essay.AuthorId);
             return View(essay);
         }
 
@@ -158,8 +167,11 @@ namespace BookStore.Areas.Administrator.Controllers
                 return NotFound();
             }
 
+            //var essay = await _context.Essays
+            //    .FirstOrDefaultAsync(m => m.EssayId == id);
             var essay = await _context.Essays
-                .FirstOrDefaultAsync(m => m.EssayId == id);
+           .Include(b => b.Author)
+           .FirstOrDefaultAsync(b => b.EssayId == id);
             if (essay == null)
             {
                 return NotFound();
@@ -173,7 +185,8 @@ namespace BookStore.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var essay = await _context.Essays.FindAsync(id);
+            //  var essay = await _context.Essays.FindAsync(id);
+            var essay = await _context.Essays.Include(b => b.Author).FirstOrDefaultAsync(b => b.EssayId == id);
             if (essay != null)
             {
                 if (!string.IsNullOrEmpty(essay.EssayImagePath))

@@ -1,7 +1,7 @@
 ﻿@model BookStore.Models.Author
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Author Details";
 }
 
 <h2>Author Details</h2>
@@ -90,6 +90,32 @@
                     <span>No books found for this Author.</span>
                     }
         
+        </dd>
+        <dt class="col-sm-2">
+            Author's Essays
+        </dt>
+        <dd class="col-sm-10">
+     
+            @if (Model.Essays != null && Model.Essays.Any())
+            {
+                @foreach (var essay in Model.Essays)
+                {
+                    <span>
+                        <a asp-action="Details" asp-controller="Essay" asp-route-id="@essay.EssayId" style="color:black">@essay.EssayTitle</a>
+                    </span>
+
+                    @if (essay != Model.Essays.Last())
+                    {
+                        <span class="separator">, </span>
+                    }
+                }
+            }
+            else
+                {
+                    <span>No Essays found for this Author.</span>
+                    }
+        
+            
         </dd>
     </dl>
     

@@ -1,14 +1,12 @@
 ﻿@model BookStore.Models.Essay
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Essay Details";
 }
 
-<h1>Details</h1>
-
+<h2>Essay Details</h2>
+<hr />
 <div>
-    <h4>Essay</h4>
-    <hr />
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.EssayTitle)
@@ -16,18 +14,24 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.EssayTitle)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Author.AuthorName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Author.AuthorName)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.EssayDescription)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.EssayDescription)
         </dd>
-        <dt class = "col-sm-2">
+        @* <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.EssayAuthor)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.EssayAuthor)
-        </dd>
+        </dd> *@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.EssayImagePath)
         </dt>
@@ -63,7 +67,11 @@
         </dd>
     </dl>
 </div>
+
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.EssayId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.EssayId" class="btn Anotherbtn">Edit</a> <br />
+    <a asp-action="Index" style="text-decoration:underline;color:#2a2438">Back to Essays List</a>
+
 </div>
+

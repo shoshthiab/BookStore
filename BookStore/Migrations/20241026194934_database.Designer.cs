@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241025183232_BookAuthorsUpdation")]
-    partial class BookAuthorsUpdation
+    [Migration("20241026194934_database")]
+    partial class database
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -158,6 +158,9 @@ namespace BookStore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("AuthorId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -183,6 +186,8 @@ namespace BookStore.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("EssayId");
+
+                    b.HasIndex("AuthorId");
 
                     b.ToTable("Essays");
                 });
@@ -426,6 +431,17 @@ namespace BookStore.Migrations
                     b.Navigation("Author");
                 });
 
+            modelBuilder.Entity("BookStore.Models.Essay", b =>
+                {
+                    b.HasOne("BookStore.Models.Author", "Author")
+                        .WithMany("Essays")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -480,6 +496,8 @@ namespace BookStore.Migrations
             modelBuilder.Entity("BookStore.Models.Author", b =>
                 {
                     b.Navigation("Books");
+
+                    b.Navigation("Essays");
                 });
 #pragma warning restore 612, 618
         }

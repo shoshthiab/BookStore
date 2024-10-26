@@ -28,7 +28,7 @@ namespace BookStore.Areas.Administrator.Controllers
         {
             // return View(await _context.Authors.ToListAsync());
             var authors = await _context.Authors
-            .Include(a => a.Books) 
+            .Include(a => a.Books).Include(b => b.Essays)
             .ToListAsync(); 
 
             return View(authors);
@@ -45,7 +45,7 @@ namespace BookStore.Areas.Administrator.Controllers
             //var author = await _context.Authors
             //    .FirstOrDefaultAsync(m => m.AuthorId == id);
             var author = await _context.Authors
-            .Include(a => a.Books)
+            .Include(a => a.Books).Include(b => b.Essays)
             .FirstOrDefaultAsync(a => a.AuthorId == id);
 
             if (author == null)

@@ -1,14 +1,89 @@
 ﻿@model IEnumerable<BookStore.Models.Essay>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Essays";
 }
 
-<h1>Index</h1>
+
+<h1>Essays</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn myBtn" style="text-decoration:none;">New Essay?</a>
 </p>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-6 mb-4">
+            <div class="essay-card d-flex flex-column align-items-stretch myBtn">
+                <div class="d-flex flex-row">
+                    <div class="image-section">
+                        <img src="@item.EssayImagePath" alt="Essay Image" class="img-fluid" style="border-radius: 8px; min-height: 100px;width:70%; object-fit: cover;">
+                    </div>
+                    <div class="content-section p-3">
+                        <h5 style="font-weight:bold">@Html.DisplayFor(modelItem => item.EssayTitle)</h5>
+                        <p class="card-text">Author: @Html.DisplayFor(modelItem => item.Author.AuthorName)</p>
+                        <p class="description-text">
+                            @item.EssayDescription?.Substring(0, Math.Min(item.EssayDescription.Length, 80))@if (@item.EssayDescription!.Length > 150)
+                            {<span>...</span>}
+                        </p>
+                        <p>Creation: @Html.DisplayFor(modelItem => item.CreationDate)</p>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <a asp-action="Edit" asp-route-id="@item.EssayId" class="btn Anotherbtn">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.EssayId" class="btn Anotherbtn">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.EssayId" class="btn Anotherbtn">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+ <style>
+
+    .essay-card {
+        display: flex;
+        flex-direction: column;
+        color: white;
+        background-color: #5c5470;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-section {
+        flex: 1 1 38%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .content-section {
+        flex: 1 1 65%;
+    }
+
+    .card-footer {
+       
+        padding: 8px;
+        background-color: inherit; 
+    }
+
+    .description-text {
+        white-space: normal; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+
+
+
+
+@*
+     <p class="mb-1">@Html.DisplayFor(modelItem => item.EssayAuthor)</p>
+              
 <table class="table">
     <thead>
         <tr>
@@ -69,3 +144,4 @@
 }
     </tbody>
 </table>
+*@

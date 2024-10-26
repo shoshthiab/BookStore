@@ -1,8 +1,128 @@
 ﻿@model BookStore.Models.Essay
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Essay";
 }
+
+<h2>Edit Essay</h2>
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="EssayId" />
+            
+            <div class="form-group">
+                <label asp-for="EssayTitle" class="control-label"></label>
+                <input asp-for="EssayTitle" class="form-control" />
+                <span asp-validation-for="EssayTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthorId" class="control-label"></label>
+                @Html.DropDownList("AuthorId", (SelectList)ViewBag.Authors, "Select Author", new { @class = "form-control" })
+                <span asp-validation-for="AuthorId" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="EssayDescription" class="control-label"></label>
+                <textarea asp-for="EssayDescription" class="form-control" id="essayDescription" maxlength="1000" rows="10" oninput="updateCharCount()"></textarea>
+                <span asp-validation-for="EssayDescription" class="text-danger"></span>
+                <small id="charCount" class="form-text text-muted">1000 characters remaining</small>
+            </div>
+            
+            @* <div class="form-group">
+                <label asp-for="EssayAuthor" class="control-label"></label>
+                <input asp-for="EssayAuthor" class="form-control" />
+                <span asp-validation-for="EssayAuthor" class="text-danger"></span>
+            </div>
+ *@
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreationDate" class="control-label"></label>
+                <input asp-for="CreationDate" class="form-control" />
+                <span asp-validation-for="CreationDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EssayImagePath">Current Essay Image</label><br />
+                @if (!string.IsNullOrEmpty(Model.EssayImagePath))
+                {
+                    <img src="@Model.EssayImagePath" alt="Essay Image" style="max-width: 200px;" />
+                }
+            </div>
+            <div class="form-group">
+                <label for="imageFile">Upload New Essay Image</label>
+                <input type="file" name="imageFile" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn" style="margin-top:10px;text-decoration:none;background-color:#5c5470;color:white" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" style="text-decoration:underline;color:#2a2438">Back to Essays List</a>
+</div>
+
+<script>
+    function updateCharCount() {
+        const maxChars = 1000;
+        const textarea = document.getElementById("essayDescription");
+        const remainingChars = maxChars - textarea.value.length;
+        document.getElementById("charCount").textContent = remainingChars + " characters remaining";
+    }
+
+    // Initialize character count on page load
+    document.addEventListener("DOMContentLoaded", updateCharCount);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* 
 
 <h1>Edit</h1>
 
@@ -32,7 +152,7 @@
                 <label asp-for="EssayImagePath" class="control-label"></label>
                 <input asp-for="EssayImagePath" class="form-control" />
                 <span asp-validation-for="EssayImagePath" class="text-danger"></span>
-            </div> *@
+            </div> */@
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
@@ -72,3 +192,4 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+ *@
