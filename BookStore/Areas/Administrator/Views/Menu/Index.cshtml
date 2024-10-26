@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BookStore.Models.Menu>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Menus</h1>
+
+<p>
+    <a asp-action="Create" class="btn myBtn" style="text-decoration:none;">New Menu?</a>
+</p>
+<div class="row">
+@foreach (var item in Model)
+{
+
+
+    <div class="col-md-4 mb-4">
+        <div class="card myBtn" style="min-height: 150px;">
+            <div class="card-body text-center">
+                <h5 class="card-title" style="font-weight:bold">@Html.DisplayFor(modelItem => item.MenuTitle)</h5>
+
+                <p class="card-text">URL: @Html.DisplayFor(modelItem => item.MenuUrl)</p>
+
+                <p class="card-text">Is Active? @Html.DisplayFor(modelItem => item.IsActive) | Is Deleted? @Html.DisplayFor(modelItem => item.IsDeleted)</p>
+                <p class="card-text">Creation Date: @Html.DisplayFor(modelItem => item.CreationDate)</p>
+
+            </div>
+            <div class="card-footer text-center">
+                <a asp-action="Edit" asp-route-id="@item.MenuId" class="btn Anotherbtn">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.MenuId" class="btn Anotherbtn">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.MenuId" class="btn Anotherbtn">Delete</a>
+            </div>
+        </div>
+
+    </div>
+
+
+}
+</div>

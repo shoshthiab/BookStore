@@ -4,11 +4,9 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
+<h2>Author Details</h2>
+<hr />
 <div>
-    <h4>Author</h4>
-    <hr />
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.AuthorName)
@@ -68,9 +66,37 @@
                 <img src="@Model.AuthorImagePath" alt="Author Image" style="max-width: 200px;" />
             }
         </dd>
+        <dt class="col-sm-2">
+            Author's Works
+        </dt>
+        <dd class="col-sm-10">
+        
+                @if (Model.Books != null && Model.Books.Any())
+                {
+                @foreach (var book in Model.Books)
+                    {
+                        <span class="book-item">
+                            <a asp-action="Details" asp-controller="Books" asp-route-id="@book.BookId" style="color:black">@book.BookTitle</a>
+                        </span>
+
+                        @if (book != Model.Books.Last())
+                        {
+                            <span class="separator">, </span>
+                        }
+                    }
+                }
+                else
+                {
+                    <span>No books found for this Author.</span>
+                    }
+        
+        </dd>
     </dl>
+    
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.AuthorId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.AuthorId" class="btn Anotherbtn">Edit</a> <br />
+   
+    <a asp-action="Index" style="text-decoration:underline;color:#2a2438">Back to Authors List</a>
+
 </div>

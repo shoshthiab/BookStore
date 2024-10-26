@@ -26,7 +26,9 @@ namespace BookStore.Areas.Administrator.Controllers
         // GET: Administrator/Book
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Books.ToListAsync());
+            var books = _context.Books.Include(b => b.Author).ToList();
+            return View(books);
+           // return View(await _context.Books.ToListAsync());
         }
 
         // GET: Administrator/Book/Details/5
@@ -43,15 +45,17 @@ namespace BookStore.Areas.Administrator.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.Authors = new SelectList(await _context.Authors.ToListAsync(), "AuthorId", "AuthorName", book.AuthorId);
             return View(book);
         }
 
-        // GET: Administrator/Book/Create
+        //GET: Administrator/Book/Create
         public IActionResult Create()
         {
+            ViewBag.Authors = _context.Authors.ToList();
             return View();
         }
+
 
         // POST: Administrator/Book/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -81,10 +85,27 @@ namespace BookStore.Areas.Administrator.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Authors = _context.Authors.ToList();
             return View(book);
         }
 
         // GET: Administrator/Book/Edit/5
+        //public async Task<IActionResult> Edit(Guid? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+
+        //    //var book = await _context.Books.FindAsync(id);
+        //    var book = await _context.Books.Include(b => b.Author).FirstOrDefaultAsync(b => b.BookId == id);
+        //    if (book == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(book);
+        //}
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -92,14 +113,19 @@ namespace BookStore.Areas.Administrator.Controllers
                 return NotFound();
             }
 
-
-            var book = await _context.Books.FindAsync(id);
+            // Retrieve the book along with the author
+            var book = await _context.Books.Include(b => b.Author).FirstOrDefaultAsync(b => b.BookId == id);
             if (book == null)
             {
                 return NotFound();
             }
+
+            // Add the list of authors to ViewBag
+            ViewBag.Authors = new SelectList(await _context.Authors.ToListAsync(), "AuthorId", "AuthorName", book.AuthorId);
+
             return View(book);
         }
+
 
         // POST: Administrator/Book/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -131,7 +157,7 @@ namespace BookStore.Areas.Administrator.Controllers
                         book.BookImagePath = "/images/" + uniqueFileName;
                     }
 
-
+                    book.AuthorId = book.AuthorId;
                     _context.Update(book);
                     await _context.SaveChangesAsync();
                 }
@@ -148,6 +174,7 @@ namespace BookStore.Areas.Administrator.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Authors = new SelectList(await _context.Authors.ToListAsync(), "AuthorId", "AuthorName", book.AuthorId);
             return View(book);
         }
 
@@ -159,8 +186,11 @@ namespace BookStore.Areas.Administrator.Controllers
                 return NotFound();
             }
 
+            //var book = await _context.Books
+            //    .FirstOrDefaultAsync(m => m.BookId == id);
             var book = await _context.Books
-                .FirstOrDefaultAsync(m => m.BookId == id);
+            .Include(b => b.Author)
+            .FirstOrDefaultAsync(b => b.BookId == id);
             if (book == null)
             {
                 return NotFound();
@@ -174,7 +204,8 @@ namespace BookStore.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var book = await _context.Books.FindAsync(id);
+            //var book = await _context.Books.FindAsync(id);
+            var book = await _context.Books.Include(b => b.Author).FirstOrDefaultAsync(b => b.BookId == id);
             if (book != null)
             {
 
@@ -190,6 +221,7 @@ namespace BookStore.Areas.Administrator.Controllers
                         System.IO.File.Delete(filePath);
                     }
                 }
+                //book.AuthorId = null;
                 _context.Books.Remove(book);
             }
 

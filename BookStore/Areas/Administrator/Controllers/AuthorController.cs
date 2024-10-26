@@ -26,7 +26,12 @@ namespace BookStore.Areas.Administrator.Controllers
         // GET: Administrator/Author
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Authors.ToListAsync());
+            // return View(await _context.Authors.ToListAsync());
+            var authors = await _context.Authors
+            .Include(a => a.Books) 
+            .ToListAsync(); 
+
+            return View(authors);
         }
 
         // GET: Administrator/Author/Details/5
@@ -37,8 +42,12 @@ namespace BookStore.Areas.Administrator.Controllers
                 return NotFound();
             }
 
+            //var author = await _context.Authors
+            //    .FirstOrDefaultAsync(m => m.AuthorId == id);
             var author = await _context.Authors
-                .FirstOrDefaultAsync(m => m.AuthorId == id);
+            .Include(a => a.Books)
+            .FirstOrDefaultAsync(a => a.AuthorId == id);
+
             if (author == null)
             {
                 return NotFound();

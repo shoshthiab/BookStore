@@ -4,10 +4,8 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Author</h4>
-<hr />
+<h2>Edit Author:@Model.AuthorName</h2>
+<hr style="margin:0;padding:0;" />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit" method="post" enctype="multipart/form-data">
@@ -53,9 +51,7 @@
                 <input asp-for="CreationDate" class="form-control" />
                 <span asp-validation-for="CreationDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+            
             <div class="form-group">
                 <label asp-for="AuthorImagePath">Current Author Image</label><br />
                 @if (!string.IsNullOrEmpty(Model.AuthorImagePath))
@@ -67,6 +63,9 @@
                 <label for="imageFile">Upload New Author Image</label>
                 <input type="file" name="imageFile" class="form-control" />
             </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn Anotherbtn" style="margin-top:7px;margin-bottom:3px" />
+            </div> 
 
 
 
@@ -75,6 +74,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" style="text-decoration:underline;color:#2a2438">Back to Authors List</a>
 </div>
 

@@ -1,95 +1,37 @@
 ﻿@model IEnumerable<BookStore.Models.Book>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Books";
 }
 
-<h1>Index</h1>
+<h1>Books</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn myBtn" style="text-decoration:none;">New Book?</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.BookTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Language)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Topic)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Available)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Currency)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AvailableQuantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AuthorName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsDeleted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreationDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Language)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Topic)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Available)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Currency)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AvailableQuantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuthorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDeleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.BookId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BookId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card myBtn" style="min-height: 400px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title" style="font-weight:bold">@Html.DisplayFor(modelItem => item.BookTitle)</h5>
+                    <img src="@item.BookImagePath" alt="Book Image" class="img-fluid mb-3" style="max-height: 200px; object-fit: cover; border-radius: 8px;" />
+                    <p class="card-text">Topic: @Html.DisplayFor(modelItem => item.Topic)</p>
+                    <p class="card-text">Language: @Html.DisplayFor(modelItem => item.Language)</p>
+                    <p class="card-text">Price: @Html.DisplayFor(modelItem => item.Price) @Html.DisplayFor(modelItem => item.Currency)</p>
+                    <p class="card-text">Available Quantity: @Html.DisplayFor(modelItem => item.AvailableQuantity)</p>
+                    <p class="card-text">Author: @Html.DisplayFor(modelItem => item.Author.AuthorName)</p>
+                    <p class="card-text">Activation: @Html.DisplayFor(modelItem => item.IsActive) || Deletion: @Html.DisplayFor(modelItem => item.IsDeleted)</p>
+                    <p class="card-text">Added on: @Html.DisplayFor(modelItem => item.CreationDate)</p>
+                </div>
+                <div class="card-footer text-center">
+                    <a asp-action="Edit" asp-route-id="@item.BookId" class="btn Anotherbtn">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.BookId" class="btn Anotherbtn">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.BookId" class="btn Anotherbtn">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

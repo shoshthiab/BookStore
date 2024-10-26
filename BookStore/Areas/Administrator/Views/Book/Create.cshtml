@@ -3,11 +3,8 @@
 @{
     ViewData["Title"] = "Create";
 }
-
-<h1>Create</h1>
-
-<h4>Book</h4>
-<hr />
+<h2>Create New Book</h2>
+<hr style="margin:0;padding:0;" />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" method="post" enctype="multipart/form-data">
@@ -34,12 +31,21 @@
                          new { @class = "form-control" })
                 <span asp-validation-for="Topic" class="text-danger"></span>
             </div>
-            <div class="form-group">
+           @*  <div class="form-group">
                 <label asp-for="Available" class="control-label"></label>
                 @Html.DropDownListFor(model => model.Available,
                          new SelectList(Enum.GetValues(typeof(Book.availability)).Cast<Book.availability>().Select(e => new { Id = e, Name = e.ToString() }), "Id", "Name"),
                          "Select Book Availability",
                          new { @class = "form-control" })
+                <span asp-validation-for="Available" class="text-danger"></span>
+            </div>
+ *@
+            <div class="form-group">
+                <label asp-for="Available" class="control-label"></label>
+                @Html.DropDownListFor(model => model.Available,
+                         new SelectList(Enum.GetValues(typeof(Book.availability)).Cast<Book.availability>().Select(e => new { Id = e, Name = e.ToString() }), "Id", "Name"),
+                         "Select Book Availability",
+                         new { @class = "form-control", id = "AvailableDropdown" })
                 <span asp-validation-for="Available" class="text-danger"></span>
             </div>
 
@@ -57,16 +63,40 @@
                 <span asp-validation-for="Currency" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="AvailableQuantity" class="control-label"></label>
                 <input asp-for="AvailableQuantity" class="form-control" />
                 <span asp-validation-for="AvailableQuantity" class="text-danger"></span>
-            </div>
+            </div> *@
             <div class="form-group">
+                <label asp-for="AvailableQuantity" class="control-label"></label>
+                <input asp-for="AvailableQuantity" class="form-control" id="AvailableQuantityInput" />
+                <span asp-validation-for="AvailableQuantity" class="text-danger"></span>
+            </div>
+           @*  <div class="form-group">
                 <label asp-for="AuthorName" class="control-label"></label>
                 <input asp-for="AuthorName" class="form-control" />
                 <span asp-validation-for="AuthorName" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="AuthorId" class="control-label">Author</label>
+                @Html.DropDownListFor(model => model.AuthorId,
+                         new SelectList(ViewBag.Authors, "AuthorId", "AuthorName"),
+                         "Select Author",
+                         new { @class = "form-control" })
+                <span asp-validation-for="AuthorId" class="text-danger"></span>
+            </div>
+             
+            *@
+            <div class="form-group">
+                <label asp-for="AuthorId" class="control-label">Author</label>
+                @Html.DropDownListFor(model => model.AuthorId,
+                         new SelectList(ViewBag.Authors, "AuthorId", "AuthorName"),
+                         "Select Author",
+                         new { @class = "form-control" })
+                <span asp-validation-for="AuthorId" class="text-danger"></span>
+            </div>
+
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
@@ -88,13 +118,27 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn" style="margin-top:10px;text-decoration:none;background-color:#5c5470;color:white" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" style="text-decoration:underline;color:#2a2438">Back to Books List</a>
 </div>
 
+<script>
+    document.getElementById("AvailableDropdown").addEventListener("change", function () {
+        var availability = this.value;
+        var quantityInput = document.getElementById("AvailableQuantityInput");
+
+        if (availability === "SoldOut") {
+            quantityInput.value = 0;
+            quantityInput.disabled = true;
+        } else {
+            quantityInput.value = 1;
+            quantityInput.disabled = false;
+        }
+    });
+</script>

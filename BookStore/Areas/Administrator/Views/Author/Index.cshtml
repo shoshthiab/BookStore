@@ -4,74 +4,54 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
+<h1>Authors</h1>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn myBtn" style="text-decoration:none;">New Author?</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.AuthorName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FbLink)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InstaLink)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LinkedInLink)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.XLink)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsDeleted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreationDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuthorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FbLink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InstaLink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LinkedInLink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.XLink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDeleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.AuthorId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AuthorId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.AuthorId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="row">
+    @foreach (var item in Model)
+    {
+
+
+        <div class="col-md-4 mb-4">
+            <div class="card myBtn" style="min-height: 100px;">
+                <div class="card-body text-center">
+                    <img src="@item.AuthorImagePath" alt="Auhtor Image" class="img-fluid mb-3" style="max-height: 200px; object-fit: cover; border-radius: 8px;" />
+                    <h5 class="card-title" style="font-weight:bold">@Html.DisplayFor(modelItem => item.AuthorName)</h5>
+                    
+                   <div>
+                   <a href="@item.FbLink"><img style="width:20px;height:20px;" src="~/img/icons8-facebook-48 (1).png" alt="X" type="image/x-icon"></a>
+                   <a href="@item.InstaLink"><img style="width:20px;height:20px;" src="~/img/icons8-instagram-48 (1).png" alt="X" type="image/x-icon"></a>
+                   <a href="@item.XLink"><img style="width:20px;height:20px;" src="~/img/icons8-twitterx-32 (1).png" alt="X" type="image/x-icon"></a>
+                   <a href="@item.LinkedInLink"><img style="width:23px;height:23px;" src="~/img/icons8-linkedin-48.png" alt="LinkedIn"></a>
+                   </div>
+                    <div class="text-center">
+                        @if (item.Books != null && item.Books.Any())
+                        {
+                            @foreach (var book in item.Books)
+                            {
+                                <span class="book-item">
+                                    <a asp-action="Details" asp-controller="Books" asp-route-id="@book.BookId" style="color:white">@book.BookTitle</a>
+                                </span>
+                              
+                                @if (book != item.Books.Last())
+                                {
+                                    <span class="separator">, </span> 
+                                }
+                            }
+                        }
+                       
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <a asp-action="Edit" asp-route-id="@item.AuthorId" class="btn Anotherbtn">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.AuthorId" class="btn Anotherbtn">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.AuthorId" class="btn Anotherbtn">Delete</a>
+                </div>
+            </div>
+
+        </div>
+
+
+    }
+</div>
