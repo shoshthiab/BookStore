@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.ViewComponents
 {
-    public class AdsSliderViewCompnent : ViewComponent
+    public class AdsSliderViewComponent : ViewComponent
     {
         private AppDbContext db;
-        public AdsSliderViewCompnent(AppDbContext _db)
+        public AdsSliderViewComponent(AppDbContext _db)
         {
             db = _db;
         }

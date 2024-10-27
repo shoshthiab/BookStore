@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Store2Design\assets\css\.DS_Store" />
+    <None Include="wwwroot\Store2Design\assets\css\theme-color\.DS_Store" />
+    <None Include="wwwroot\Store2Design\assets\fonts\.DS_Store" />
+    <None Include="wwwroot\Store2Design\assets\images\.DS_Store" />
+    <None Include="wwwroot\Store2Design\assets\js\.DS_Store" />
     <None Include="wwwroot\css\AdminStyle.css" />
   </ItemGroup>
 

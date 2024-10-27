@@ -1,6 +1,7 @@
 using BookStore.Data;
 using BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace BookStore.Controllers
@@ -18,14 +19,17 @@ namespace BookStore.Controllers
         }
 
         public IActionResult Index()
-        {
-            return View();
+		{
+			
+			return View();
         }
 
         public IActionResult Privacy()
         {
             return View();
-        }
+        } 
+      
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

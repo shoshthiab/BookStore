@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Author>
+<div id="Authors">
+    <section id="aa-agents" style="background-color:#e7eaf6;margin-top:0px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="aa-agents-area">
+                    <div class="aa-title">
+                            <div class="line-container">
+                                <h2 class="mu-heading-title" style="color:#38598b;text-decoration:none;margin:0px">Authors</h2>
+                                <div class="horizontal-line"></div>
+                            </div>
+                       @*  <span class="mu-header-dot" style="background-color:#38598b;color:#38598b;margin:0px"></span> *@
+                        </div>
+                        <!-- agents content -->
+                        <div class="aa-agents-content">
+                            <ul class="aa-agents-slider">
+                                @foreach (var item in Model)
+                                {
+                                    <li>
+                                        <div class="aa-single-agents">
+                                            <div class="aa-agents-img">
+                                            @* <img src="~/AuthorDesign/img/agents/agent-1.png" alt="agent member image" > *@
+                                            <img src="@item.AuthorImagePath" alt="Authoe member image" width="270" height="250">
+                                            </div>
+                                        <div class="aa-agetns-info" style="background-color:#38598b">
+                                                <h4><a href="#">@item.AuthorName</a></h4>
+                                                
+                                               
+                                            <div class="aa-agent-social">
+                                                <a href="@item.FbLink"><i class="fa fa-facebook"></i></a>
+                                                <a href="@item.XLink"><i class="fa  fa-twitter"></i></a>
+                                                <a href="@item.LinkedInLink"><i class="fa fa-linkedin"></i></a>
+                                                <a href="@item.InstaLink"><i class="fa fa-instagram"></i></a>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<style>
+    .line-container {
+        display: inline-block; 
+        text-align: center; 
+        align-items: center;
+        justify-content: center;
+    }
+
+    .horizontal-line {
+        height: 2px; 
+        background-color: #38598b;
+        width:150px;
+        margin-top: 5px;
+    }
+</style>

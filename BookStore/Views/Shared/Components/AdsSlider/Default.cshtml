@@ -1,10 +1,75 @@
 ﻿@model IEnumerable<AdsSlider>
-@{
-    ViewData["Title"] = "Default";
-}
-
-<h1>Default</h1>
 
 
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+<section id="mu-hero" style="background-color:#38598b; margin-top:0">
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			@foreach(var item in Model)
+			{
+				<div class="swiper-slide">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-4 col-sm-4 col-sm-push-4">
+								<div class="mu-hero-right">
+									<img src="@item.AdImagePath" alt="Ad image" class="img-fluid mb-2" style="max-height: 250px; object-fit: cover; border-radius: 8px;" />
+									
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-4 col-sm-pull-4">
+								<div class="mu-hero-left ">
+									<h1>@item.AdTitle</h1>
+									<p>@item.AdDescription</p>
+									<div class="mu-primary-btn" style="color:#113f67">@item.AdType</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div> 
+
+				
+
+			}
 
 
+
+		</div>
+
+
+		
+	</div>
+</section>
+
+<!-- Include Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+	var swiper = new Swiper('.swiper-container', {
+		loop: true,
+		autoplay: {
+			delay: 3000, // الوقت بين كل شريحة (3000ms = 3 ثواني)
+			disableOnInteraction: false, // استمرار التشغيل التلقائي حتى عند التفاعل
+		},
+		pagination: {
+			el: '.swiper-pagination',
+			clickable: true,
+		},
+		
+	});
+</script>
+
+<style>
+	
+	.swiper-pagination-bullet {
+		background-color: #ff6347; 
+	}
+
+	.swiper-pagination-bullet-active {
+		background-color: #ffa07a; 
+	}
+</style>
+ 
