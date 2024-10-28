@@ -7,6 +7,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\AuthorDesign\.vs\VSWorkspaceState.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\AuthorDesign\.sass-cache\24fa3457fef2c7a8dd499a16da444ff5da93fd79\_footer.scssc" />
+    <None Include="wwwroot\AuthorDesign\.sass-cache\24fa3457fef2c7a8dd499a16da444ff5da93fd79\_header.scssc" />
+    <None Include="wwwroot\AuthorDesign\.sass-cache\24fa3457fef2c7a8dd499a16da444ff5da93fd79\_nav.scssc" />
+    <None Include="wwwroot\AuthorDesign\.sass-cache\92e65d89f02a31c41a04d8a86d76125d70b1e445\_buttons.scssc" />
+    <None Include="wwwroot\AuthorDesign\.sass-cache\92e65d89f02a31c41a04d8a86d76125d70b1e445\_responsive.scssc" />
+    <None Include="wwwroot\AuthorDesign\.sass-cache\92e65d89f02a31c41a04d8a86d76125d70b1e445\_sections.scssc" />
+    <None Include="wwwroot\AuthorDesign\.sass-cache\92e65d89f02a31c41a04d8a86d76125d70b1e445\_theme-color.scssc" />
+    <None Include="wwwroot\AuthorDesign\.sass-cache\92e65d89f02a31c41a04d8a86d76125d70b1e445\_typography.scssc" />
+    <None Include="wwwroot\AuthorDesign\.sass-cache\b17cfc8f2f692ca944bdfcaed15220cf78b09c99\style.scssc" />
+    <None Include="wwwroot\AuthorDesign\.sass-cache\d69ec8be0a74b90aa26ec05a08d2f01daa24c3bd\_base.scssc" />
+    <None Include="wwwroot\AuthorDesign\.sass-cache\d69ec8be0a74b90aa26ec05a08d2f01daa24c3bd\_mixins.scssc" />
+    <None Include="wwwroot\AuthorDesign\.sass-cache\d69ec8be0a74b90aa26ec05a08d2f01daa24c3bd\_variables.scssc" />
+    <None Include="wwwroot\AuthorDesign\.vs\Home Property\config\applicationhost.config" />
+    <None Include="wwwroot\AuthorDesign\.vs\Home Property\v16\.suo" />
+    <None Include="wwwroot\AuthorDesign\.vs\slnx.sqlite" />
     <None Include="wwwroot\Store2Design\assets\css\.DS_Store" />
     <None Include="wwwroot\Store2Design\assets\css\theme-color\.DS_Store" />
     <None Include="wwwroot\Store2Design\assets\fonts\.DS_Store" />

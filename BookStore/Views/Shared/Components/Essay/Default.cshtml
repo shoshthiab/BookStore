@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Essay>
+<!-- Blog -->
+<section class="fh5co-blog">
+	<div class="site-container">
+		<h2 class="universal-h2 universal-h2-bckg">My Blog</h2>
+		<div class="blog-slider blog-inner">
+			@foreach(var item in Model)
+			{
+				<div class="single-blog">
+					<div class="single-blog__img">
+						<img src="@item.EssayImagePath" alt="blog image" width="300" height="400">
+					</div>
+					<div class="single-blog__text">
+						<h4>@item.EssayTitle</h4>
+						<span>@item.CreationDate.Date</span>
+						<p>@item.EssayDescription.Substring(0,150)</p>
+					</div>
+				</div>
+				
+			}
+			
+
+		</div>
+
+	</div>
+</section>
+<!-- Blog end -->

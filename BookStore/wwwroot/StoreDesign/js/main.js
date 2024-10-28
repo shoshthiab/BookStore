@@ -20,7 +20,7 @@ $(document).ready(function() {
 		nextArrow: '<span class="span-arrow slick-next">></span>'
 	});
 
-	/* Blog slider */
+	/* Blog slider 
 	$('.blog-slider').slick({
 		slidesToShow: 2,
 		prevArrow: '<span class="span-arrow slick-prev"><</span>',
@@ -33,7 +33,7 @@ $(document).ready(function() {
 			}
 		}
 		]
-	});
+	});*/
 	
 });
 
