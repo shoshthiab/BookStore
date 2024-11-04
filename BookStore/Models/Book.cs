@@ -52,7 +52,7 @@ namespace BookStore.Models
         }
         public enum field
         {
-            Mystery, Thriller, Science, Fantasy, Romance, Historical, Biography, Children, Stories
+            Mystery, Thriller, Science, Fantasy, Romance, Historical, Biography, Children, Stories, Novel, Technology
         }
     
 
