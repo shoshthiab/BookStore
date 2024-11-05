@@ -13,7 +13,9 @@ namespace BookStore.Data
         public DbSet<Author> Authors { get; set; }
         public DbSet<Essay> Essays { get; set; }
         public DbSet<Menu> Menus { get; set; }
-
+        public DbSet<Quote> Quotes { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+     
 
     }
 

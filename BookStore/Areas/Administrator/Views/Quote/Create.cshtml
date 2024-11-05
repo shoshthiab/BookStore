@@ -1,0 +1,62 @@
+﻿@model BookStore.Models.Quote
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+<h4>Quote</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="QuoteText" class="control-label"></label>
+                <input asp-for="QuoteText" class="form-control" maxlength="200" oninput="updateCharacterCount()" id="quoteText" />
+                <span asp-validation-for="QuoteText" class="text-danger"></span>
+                <div id="charCount" style="margin-top: 5px; color: #888;">
+                    عدد الأحرف المتبقية: <span id="remainingChars">200</span>
+                </div>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreationDate" class="control-label"></label>
+                <input asp-for="CreationDate" class="form-control" />
+                <span asp-validation-for="CreationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script>
+    function updateCharacterCount() {
+        const maxChars = 200;
+        const textArea = document.getElementById("quoteText");
+        const remainingChars = maxChars - textArea.value.length;
+        document.getElementById("remainingChars").textContent = remainingChars;
+
+        const charCountDisplay = document.getElementById("remainingChars");
+        if (remainingChars < 0) {
+            charCountDisplay.style.color = "red";
+        } else {
+            charCountDisplay.style.color = "#888";
+        }
+    }
+</script>

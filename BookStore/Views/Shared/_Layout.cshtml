@@ -20,23 +20,18 @@
     <link href="~/Store2Design/style.css" rel="stylesheet">
 
 	 
-      @* Authordesign  file *@
-     <link rel="stylesheet" type="text/css" href="~/AuthorDesign/css/slick.css">
-    <link rel="stylesheet" type="text/css" href="~/AuthorDesign/css/nouislider.css">
-    <link rel="stylesheet" href="~/AuthorDesign/css/jquery.fancybox.css" type="text/css" media="screen" />
-    <link id="switcher" href="~/AuthorDesign/css/theme-color/default-theme.css" rel="stylesheet">
-    <link href="~/AuthorDesign/css/style.css" rel="stylesheet">
+   
  
     @* StoreDesign Folder *@
      <link rel="stylesheet" href="~/StoreDesign/css/style.css">
-	<link rel="stylesheet" href=""~/StoreDesign/css/slick.css">
 
  
 
   </head>
 
   <body>
-
+    @await Component.InvokeAsync("Menu")
+    @await Component.InvokeAsync("AdsSlider")
     @RenderBody()
 	
 
@@ -47,27 +42,5 @@
     <script type="text/javascript" src="~/Store2Design/assets/js/counter.js"></script>
     <script type="text/javascript" src="~/Store2Design/assets/js/app.js"></script>
 	<script type="text/javascript" src="~/Store2Design/assets/js/custom.js"></script>
-	
-    @* AuthorDesign file *@
-         <script src="~/AuthorDesign/js/jquery.min.js"></script>
-        <script src="~/AuthorDesign/js/bootstrap.js"></script>
-        <script type="text/javascript" src="~/AuthorDesign/js/slick.js"></script>
-        <script type="text/javascript" src="~/AuthorDesign/js/nouislider.js"></script>
-        <script type="text/javascript" src="~/AuthorDesign/js/jquery.mixitup.js"></script>
-        <script type="text/javascript" src="~/AuthorDesign/js/jquery.fancybox.pack.js"></script>
-        <script src="~/AuthorDesign/js/custom.js"></script>
-
-
-
-        
-	<!-- StoreDesign folder -->
-	<script src="~/StoreDesign/js/jquery.min.js"></script>
-	<script src="~/StoreDesign/js/slick.min.js"></script>
-	<script src="~/StoreDesign/js/main.js"></script>
-
-
-
-
-    
-  </body>
+	</body>
 </html>

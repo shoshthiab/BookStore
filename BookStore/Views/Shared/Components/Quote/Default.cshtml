@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Quote>
+
+<div class="page-title">
+    <h2 style="color:#113f67;margin-top:20px;margin-bottom:20px">Latest Quotes</h2>
+</div>
+
+<div class="quotes-container">
+    @foreach (var quote in Model.Take(8))
+    {
+        <div class="quote-item">
+            <h4 class="quote-text">@quote.QuoteText</h4>
+        </div>
+    }
+</div>
+
+<div class="line-separator" style="margin-top:20px;"></div>
+
+<style>
+    .quotes-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .quote-item {
+        background-color: #a2a8d3;
+        border-radius: 8px;
+        border: 2px solid #38598b;
+        padding: 15px;
+        text-align: center;
+        height: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .quote-text {
+        font-size: 1.2em;
+        color: #113f67;
+        margin: 10px 0;
+        flex-grow: 1;
+    }
+</style>
