@@ -1,45 +1,50 @@
 ﻿@model IEnumerable<Author>
 
 <div class="page-title">
-    <h2 style="color:#113f67;margin-top:20px;margin-bottom:20px;">Authors</h2>
+    <h2 style="color:#113f67;margin-top:20px;margin-bottom:30px;">Authors</h2>
 </div>
 
 <div class="authors-container">
-    <div class="authors-slider">
-        @foreach (var author in Model)
-        {
-            <div class="author-item">
+    @foreach (var author in Model.Take(14))
+    {   
+        <div class="author-item">
+            <a asp-action="Details" asp-controller="Author" asp-route-id="@author.AuthorId">
+            <div class="image-container">
                 <img src="@author.AuthorImagePath" alt="@author.AuthorName" class="author-image">
-                <h4 class="author-name">@author.AuthorName</h4>
-                <div class="social-links">
-                    <a href="@author.FbLink"><img style="width:20px;height:20px;" src="~/img/icons8-facebook-48 (1).png" alt="Facebook" type="image/x-icon"></a>
-                    <a href="@author.InstaLink"><img style="width:20px;height:20px;" src="~/img/icons8-instagram-48 (1).png" alt="Instagram" type="image/x-icon"></a>
-                    <a href="@author.XLink"><img style="width:20px;height:20px;" src="~/img/icons8-twitterx-32 (1).png" alt="Twitter" type="image/x-icon"></a>
-                    <a href="@author.LinkedInLink"><img style="width:23px;height:23px;" src="~/img/icons8-linkedin-48.png" alt="LinkedIn"></a>
-                </div>
             </div>
-        }
-    </div>
+            <h4 class="author-name">@author.AuthorName</h4>
+            <div class="social-links">
+                <a href="@author.FbLink"><img style="width:20px;height:20px;" src="~/img/facebook_blue.png" alt="Facebook"></a>
+                <a href="@author.InstaLink"><img style="width:20px;height:20px;" src="~/img/instagram_blue.png" alt="Instagram"></a>
+                <a href="@author.XLink"><img style="width:20px;height:20px;" src="~/img/twitterfilled.png" alt="Twitter"></a>
+                <a href="@author.LinkedInLink"><img style="width:23px;height:23px;" src="~/img/linkedin_blue.png" alt="LinkedIn"></a>
+            </div>
+            </a>
+        </div>
+       
+    }
 </div>
+
+<div class="button-container" style="background-color:white;margin-top:20px;">
+    <a asp-action="Index" asp-controller="Author">
+        <button class="styled-button">View All Authors</button>
+    </a>
+</div>
+
+<div class="line-separator"></div>
 
 <style>
     .authors-container {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 20px;
         max-width: 1200px;
-        margin-right:40px;
-        margin-left:40px;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .authors-slider {
-        display: flex;
-        transition: transform 0.5s ease;
+        margin: auto;
     }
 
     .author-item {
-        flex: 0 0 auto;
-        width: 180px;
-        margin: 10px;
+        display: flex;
+        flex-direction: column;
         text-align: center;
         background-color: #a2a8d3;
         border-radius: 8px;
@@ -47,6 +52,13 @@
         border: 2px solid #38598b;
         padding: 10px;
         height: 270px;
+        justify-content: space-between;
+    }
+
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .author-image {
@@ -54,52 +66,21 @@
         height: 150px;
         border-radius: 50%;
         object-fit: cover;
-      
     }
 
     .author-name {
         min-height: 40px;
         margin: 10px 0;
-        color: #e7eaf6;
-
+        color: #113f67;
     }
 
     .social-links {
         display: flex;
         justify-content: center;
-        margin-top: 10px;
+        margin-top: auto;
     }
 
         .social-links a {
             margin: 0 5px;
         }
 </style>
-
-<script>
-    const slider = document.querySelector('.authors-slider');
-    const items = document.querySelectorAll('.author-item');
-    let currentIndex = 0;
-    let autoScroll;
-
-    function showNextSlide() {
-        currentIndex = (currentIndex + 1) % items.length;
-        const offset = -currentIndex * (items[0].clientWidth + 40);
-        slider.style.transform = `translateX(${offset}px)`;
-    }
-
-    function startAutoScroll() {
-       
-        if (items.length >= 6) {
-            autoScroll = setInterval(showNextSlide, 3000);
-        }
-    }
-
-    function stopAutoScroll() {
-        clearInterval(autoScroll);
-    }
-
-    slider.addEventListener('mouseenter', stopAutoScroll);
-    slider.addEventListener('mouseleave', startAutoScroll);
-
-    startAutoScroll();
-</script>
