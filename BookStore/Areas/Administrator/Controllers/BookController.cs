@@ -26,7 +26,7 @@ namespace BookStore.Areas.Administrator.Controllers
         // GET: Administrator/Book
         public async Task<IActionResult> Index()
         {
-            var books = _context.Books.Include(b => b.Author).ToList();
+            var books = _context.Books.Include(b => b.Author).OrderBy(a=>a.CreationDate).ToList();
             return View(books);
            // return View(await _context.Books.ToListAsync());
         }

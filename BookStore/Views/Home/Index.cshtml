@@ -6,7 +6,6 @@
 
 
 <main role="main">
-
 	@await Component.InvokeAsync("Dashboard")
 	@await Component.InvokeAsync("Book")
 	@await Component.InvokeAsync("Author")
@@ -20,6 +19,7 @@
 
 <!-- End main content -->
 <!-- Start footer -->
+<div id="AboutMenu">
 <footer id="mu-footer" role="contentinfo" style="background-color:#113f67;color:white">
 	<div class="container" style="color:white;border-color:white">
 		<div class="mu-footer-area" style="border-color:white">
@@ -40,4 +40,24 @@
 	</div>
 
 </footer>
+</div>
 <!-- End footer -->
+
+
+<style>
+	html {
+		scroll-behavior: auto;
+	}
+
+</style>
+<script>
+	document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+		anchor.addEventListener('click', function (e) {
+			e.preventDefault();
+			document.querySelector(this.getAttribute('href')).scrollIntoView({
+				behavior: 'auto'
+			});
+		});
+	});
+
+</script>

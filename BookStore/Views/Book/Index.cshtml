@@ -1,101 +1,138 @@
 ﻿@model IEnumerable<BookStore.Models.Book>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "All Books";
 }
+<div class="line-separator"></div>
+<div class="page-title">
+    <h2 style="color:#113f67;margin-bottom:20px;">All Books</h2>
+</div>
 
-<h1>Index</h1>
-@* 
-<p>
-    <a asp-action="Create">Create New</a>
-</p> *@
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.BookTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Language)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Topic)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Available)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Currency)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AvailableQuantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BookImagePath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsDeleted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreationDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Language)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Topic)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Available)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Currency)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AvailableQuantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author.AuthorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookImagePath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDeleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.BookId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BookId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="cont" id="book-container">
+    
+  
+    @foreach (var item in Model)
+    {
+     
+        <a asp-action="Details" asp-controller="Book" asp-route-id="@item.BookId">
+            <div class="item">
+                <div class="availability-circle">@item.Available</div>
+                <img src="@item.BookImagePath" alt="BookImage">
+                <h6>@item.BookTitle</h6>
+                <p>@item.Price @item.Currency</p>
+            </div>
+        </a>
+    }
+    
+    
+</div>
+
+<style>
+    .page-title {
+        text-align: center;
+    }
+
+        .page-title h2 {
+            display: inline-block;
+            font-size: 40px;
+            font-weight: bold;
+            position: relative;
+        }
+
+            .page-title h2::after {
+                content: "";
+                display: block;
+                width: 50%;
+                height: 3px;
+                background-color: #113f67;
+                position: absolute;
+                bottom: -5px;
+                left: 25%;
+            }
+
+    .cont {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+        padding: 50px;
+        background-color: #e7eaf6;
+    }
+
+    .item {
+        position: relative;
+        background-color: #38598b;
+        color: #e7eaf6;
+        text-align: center;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+        .item img {
+            width: 140px;
+            height: 200px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .item h3, .item p {
+            color: #e7eaf6;
+            margin: 5px 0;
+        }
+
+    .availability-circle {
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        background-color: #a2a8d3;
+        color: #113f67;
+        border: 1px solid #113f67;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 9.5px;
+        font-weight: bold;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #e7eaf6;
+        padding-top: 5px;
+        padding-bottom:20px;
+    }
+
+    .styled-button {
+        background-color: #113f67;
+        color: #e7eaf6;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+        .styled-button:hover {
+            background-color: #38598b;
+            transform: translateY(-2px);
+            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .styled-button:active {
+            transform: translateY(0);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+    .line-separator {
+        width: 100%;
+        height: 2px;
+        background-color: #113f67;
+        margin-top: 0px;
+    }
+</style>

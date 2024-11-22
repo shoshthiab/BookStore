@@ -1,11 +1,10 @@
 ﻿@model IEnumerable<Author>
-
+<div id="AuthorMenu">
 <div class="page-title">
     <h2 style="color:#113f67;margin-top:20px;margin-bottom:30px;">Authors</h2>
 </div>
-
 <div class="authors-container">
-    @foreach (var author in Model.Take(14))
+    @foreach (var author in Model.Take(21))
     {   
         <div class="author-item">
             <a asp-action="Details" asp-controller="Author" asp-route-id="@author.AuthorId">
@@ -32,6 +31,7 @@
 </div>
 
 <div class="line-separator"></div>
+</div>
 
 <style>
     .authors-container {

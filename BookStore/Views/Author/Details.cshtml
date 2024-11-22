@@ -1,72 +1,102 @@
 ﻿@model BookStore.Models.Author
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Author Details";
 }
 
-<h1>Details</h1>
+<div class="card p-4 shadow-lg" style="background-color: #e7eaf6; border-radius: 10px;">
+    <div class="row align-items-center">
+       
+        <div class="col-md-4 text-center" style="margin-top:15px;">
+            <img src="@Model.AuthorImagePath" alt="Author Image" class="img-fluid"
+                 style="max-height: 300px; border-radius: 10px; border: 1px solid #113f67; margin-top: 10px;" />
+        </div>
 
-<div>
-    <h4>Author</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AuthorName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AuthorName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FbLink)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FbLink)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InstaLink)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InstaLink)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LinkedInLink)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LinkedInLink)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.XLink)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.XLink)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AuthorImagePath)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AuthorImagePath)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreationDate)
-        </dd>
-    </dl>
+      
+        <div class="col-md-8" style="margin-top:30px;">
+            <h4 style="color: #113f67; border-bottom: 2px solid #113f67; padding-bottom: 5px;">Book Details</h4>
+            <dl class="row mt-3" style="color: #113f67;">
+                <dt class="col-sm-4" >Author Name</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.AuthorName)</dd>
+                <dt class="col-sm-4">Social Media</dt>
+                <dd class="col-sm-8">
+                <div class="social-links">
+                    <a href="@Model.FbLink"><img style="width:20px;height:20px;" src="~/img/facebook_blue.png" alt="Facebook"></a>
+                    <a href="@Model.InstaLink"><img style="width:20px;height:20px;" src="~/img/instagram_blue.png" alt="Instagram"></a>
+                    <a href="@Model.XLink"><img style="width:20px;height:20px;" src="~/img/twitterfilled.png" alt="Twitter"></a>
+                    <a href="@Model.LinkedInLink"><img style="width:23px;height:23px;" src="~/img/linkedin_blue.png" alt="LinkedIn"></a>
+                </div>
+                </dd>
+                <div >
+                    @if (Model.Books != null && Model.Books.Any())
+                    {
+                        <dt class="col-sm-4">Author Books</dt>
+                        <dd class="col-sm-8">
+                        @foreach (var book in Model.Books)
+                        {
+                            <span class="book-item" style="text-decoration:underline">
+                                <a asp-action="Details" asp-controller="Book" asp-route-id="@book.BookId">@book.BookTitle</a>
+                            </span>
+
+                            @if (book != Model.Books.Last())
+                            {
+                                <span class="separator">, </span>
+                            }
+                        }
+                        </dd>
+                    }
+
+                </div>
+
+
+
+   @* 
+                <dt class="col-sm-4 ">Books</dt>
+               <dd class="col-sm-8" style="text-decoration:underline">
+                  
+                </dd> *@
+            </dl>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.AuthorId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+<div class="button-container">
+    <a asp-action="Index" asp-controller="Book">
+        <button class="styled-button">View All Books</button>
+    </a>
 </div>
+
+<style>
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #e7eaf6;
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+
+    .styled-button {
+        background-color: #113f67;
+        color: #e7eaf6;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+        .styled-button:hover {
+            background-color: #38598b;
+            transform: translateY(-2px);
+            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .styled-button:active {
+            transform: translateY(0);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+</style>

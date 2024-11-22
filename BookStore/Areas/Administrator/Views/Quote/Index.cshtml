@@ -1,59 +1,35 @@
 ﻿@model IEnumerable<BookStore.Models.Quote>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Quotes";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
+<h1>Quotes</h1>
+<p >
+    <a asp-action="Create" class="btn myBtn" style="text-decoration:none;">New Quote?</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.QuoteText)
-            </th>
-           @*  <th>
-                @Html.DisplayNameFor(model => model.QuoteImagePath)
-            </th> *@
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsDeleted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreationDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuoteText)
-            </td>
-          @*   <td>
-                @Html.DisplayFor(modelItem => item.QuoteImagePath)
-            </td> *@
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDeleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.QuoteId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.QuoteId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.QuoteId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="container">
+    <div class="row text-center">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4 d-flex">
+                <div class="essay-card d-flex flex-column align-items-stretch myBtn w-100">
+                    <div class="d-flex flex-row">
+                        <div class="content-section p-3 w-100">
+                            <p class="description-text">
+                                @item.QuoteText
+                            </p>
+                            <p>Creation: @Html.DisplayFor(modelItem => item.CreationDate)</p>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a asp-action="Edit" asp-route-id="@item.QuoteId" class="btn Anotherbtn">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.QuoteId" class="btn Anotherbtn">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.QuoteId" class="btn Anotherbtn">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

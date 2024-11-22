@@ -1,14 +1,14 @@
 ﻿@model BookStore.Models.Quote
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Quote Details";
 }
 
-<h1>Details</h1>
+<h2>Quote Details</h2>
+<hr />
 
 <div>
-    <h4>Quote</h4>
-    <hr />
+
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.QuoteText)
@@ -43,6 +43,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.QuoteId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.QuoteId" class="btn Anotherbtn">Edit</a> <br />
+    <a asp-action="Index" style="text-decoration:underline;color:#2a2438">Back to Quotes List</a>
 </div>

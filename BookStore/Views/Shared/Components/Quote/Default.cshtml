@@ -1,11 +1,12 @@
 ﻿@model IEnumerable<Quote>
-
+<div id="QuoteMenu">
 <div class="page-title">
     <h2 style="color:#113f67;margin-top:20px;margin-bottom:20px">Latest Quotes</h2>
 </div>
 
 <div class="quotes-container">
-    @foreach (var quote in Model.Take(8))
+ 
+    @foreach (var quote in Model.Take(16))
     {
         <div class="quote-item">
             <h4 class="quote-text">@quote.QuoteText</h4>
@@ -14,7 +15,7 @@
 </div>
 
 <div class="line-separator" style="margin-top:20px;"></div>
-
+</div>
 <style>
     .quotes-container {
         display: grid;

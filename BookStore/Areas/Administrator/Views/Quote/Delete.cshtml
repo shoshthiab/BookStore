@@ -1,15 +1,12 @@
 ﻿@model BookStore.Models.Quote
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Delete Quote";
 }
+<h3 style="font-weight:bold">Are you sure you want to delete this Quote?</h3>
+<br />
 
-<h1>Delete</h1>
-
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Quote</h4>
-    <hr />
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.QuoteText)
@@ -45,7 +42,9 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="QuoteId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn Anotherbtn" style="margin-top:7px;margin-bottom:3px" /> <br />
+        <a asp-action="Index" style="text-decoration:underline;color:#2a2438">Back to Quotes List</a>
     </form>
+
+  
 </div>

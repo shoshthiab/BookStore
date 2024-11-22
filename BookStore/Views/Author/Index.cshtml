@@ -1,83 +1,110 @@
 ﻿@model IEnumerable<BookStore.Models.Author>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "All Authors";
 }
 
-<h1>Index</h1>
+<div class="line-separator"></div>
+<div class="page-title">
+    <h2 style="color:#113f67; margin-bottom:30px;">All Authors</h2>
+</div>
+<div class="authors-container">
+    @foreach (var author in Model)
+    {
+        <div class="author-item">
+            <a asp-action="Details" asp-controller="Author" asp-route-id="@author.AuthorId">
+                <div class="image-container">
+                    <img src="@author.AuthorImagePath" alt="@author.AuthorName" class="author-image">
+                </div>
+                <h4 class="author-name">@author.AuthorName</h4>
+                <div class="social-links">
+                    <a href="@author.FbLink"><img style="width:20px;height:20px;" src="~/img/facebook_blue.png" alt="Facebook"></a>
+                    <a href="@author.InstaLink"><img style="width:20px;height:20px;" src="~/img/instagram_blue.png" alt="Instagram"></a>
+                    <a href="@author.XLink"><img style="width:20px;height:20px;" src="~/img/twitterfilled.png" alt="Twitter"></a>
+                    <a href="@author.LinkedInLink"><img style="width:23px;height:23px;" src="~/img/linkedin_blue.png" alt="LinkedIn"></a>
+                </div>
+            </a>
+        </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.AuthorName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FbLink)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InstaLink)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LinkedInLink)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.XLink)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AuthorImagePath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsDeleted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreationDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuthorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FbLink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InstaLink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LinkedInLink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.XLink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuthorImagePath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDeleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.AuthorId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AuthorId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.AuthorId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    }
+</div>
+<style>
+    .cont {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+        padding: 50px;
+        background-color: #e7eaf6;
+    }
+    .page-title {
+        text-align: center;
+    }
+
+        .page-title h2 {
+            display: inline-block;
+            font-size: 40px;
+            font-weight: bold;
+            position: relative;
+        }
+
+            .page-title h2::after {
+                content: "";
+                display: block;
+                width: 50%;
+                height: 3px;
+                background-color: #113f67;
+                position: absolute;
+                bottom: -5px;
+                left: 25%;
+            }
+
+    .authors-container {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .author-item {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        background-color: #a2a8d3;
+        border-radius: 8px;
+        border-color: #38598b;
+        border: 2px solid #38598b;
+        padding: 10px;
+        height: 270px;
+        justify-content: space-between;
+    }
+
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .author-image {
+        width: 100px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .author-name {
+        min-height: 40px;
+        margin: 10px 0;
+        color: #113f67;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        margin-top: auto;
+    }
+
+        .social-links a {
+            margin: 0 5px;
+        }
+</style>

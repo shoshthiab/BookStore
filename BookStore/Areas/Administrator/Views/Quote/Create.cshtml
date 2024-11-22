@@ -4,20 +4,22 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-<h4>Quote</h4>
-<hr />
+<h2>Create New Quote</h2>
+<hr style="margin:0;padding:0;" />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="QuoteText" class="control-label"></label>
-                <input asp-for="QuoteText" class="form-control" maxlength="200" oninput="updateCharacterCount()" id="quoteText" />
+                @* <input asp-for="QuoteText" class="form-control" maxlength="120" oninput="updateCharacterCount()" id="quoteText" /> *@
+                <textarea asp-for="QuoteText" class="form-control" id="quoteText" maxlength="120" rows="5" oninput="updateCharacterCount()"></textarea>
                 <span asp-validation-for="QuoteText" class="text-danger"></span>
                 <div id="charCount" style="margin-top: 5px; color: #888;">
-                    عدد الأحرف المتبقية: <span id="remainingChars">200</span>
+                   <span id="remainingChars">120</span> characters remaining
                 </div>
+                @* <small id="charCount" class="form-text text-muted">120 characters remaining</small> *@
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
@@ -35,19 +37,19 @@
                 <span asp-validation-for="CreationDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn" style="margin-top:10px;text-decoration:none;background-color:#5c5470;color:white" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" style="text-decoration:underline;color:#2a2438">Back to Quotes List</a>
 </div>
 
 <script>
     function updateCharacterCount() {
-        const maxChars = 200;
+        const maxChars = 120;
         const textArea = document.getElementById("quoteText");
         const remainingChars = maxChars - textArea.value.length;
         document.getElementById("remainingChars").textContent = remainingChars;
